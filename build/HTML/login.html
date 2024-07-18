@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loge in</title>
+    <link rel="stylesheet" href="/build/CSS/Style.css">
+    <script src="https://kit.fontawesome.com/10698468cb.js" crossorigin="anonymous"></script>
+</head>
+
+<body cl>
+    <!-- Announcement of discounts -->
+    <div class="bg-black text-white flex justify-center gap-2 text-[7px] md:text-xs lg:text-base p-2">
+        <p>Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!</p>
+        <a href="#">ShopNow</a>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="relative border-b-2">
+        <div class=" flex justify-around items-center text-[12px] md:text-xs lg:text-base">
+            <a href="/index.html">
+                <img src="/build/IMG/Logo.jpg" alt="The Logo" class="w-16">
+            </a>
+            <div class="md:flex gap-2 md:gap-5 hidden">
+                <a href="/index.html">Home</a>
+                <a href="#Contact">Contact</a>
+                <a href="#About">About</a>
+                <a href="register.html">Sign Up</a>
+                <a href="#" class="hidden">Loge out</a>
+            </div>
+            <div class="flex items-center gap-3 md:gap-5 md:w-1/3">
+                <div class="bg-zinc-200 px-4 py-2 flex items-center justify-around w-full rounded-md text-[10px] ">
+                    <input type="search" name="" id="" placeholder="What are you looking for?"
+                        class="bg-inherit w-full">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <div class="flex gap-3 items-center">
+                    <i class="fa-solid fa-heart"></i>
+                    <i class="fa-solid fa-shopping-cart"></i>
+                    <div class="hidden">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="md:hidden">
+                        <div id="open">
+                            <i class="fa-solid fa-bars"></i>
+                        </div>
+                        <div id="close" class="hidden">
+                            <i class="fa-solid fa-xmark"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="list"
+            class="border-b-2 absolute top-full w-full gap-2 justify-center items-center bg-white border-t-2 p-5 text-center hidden font-thin">
+            <div class="hover:border-b-2 border-b-zinc-600 hover:text-zinc-600"><a href="#">Home</a></div>
+            <div class="hover:border-b-2 border-b-zinc-600 hover:text-zinc-600"><a href="#Contact">Contact</a></div>
+            <div class="hover:border-b-2 border-b-zinc-600 hover:text-zinc-600"><a href="#About">About</a></div>
+            <div class="hover:border-b-2 border-b-zinc-600 hover:text-zinc-600"><a href="register.html">Sign Up</a></div>
+            <div class="hover:border-b-2 border-b-zinc-600 hover:text-zinc-600"><a href="#" class="hidden">Loge out</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Logein page -->
+    <div class="px-5 md:px-10 py-10 grid gap-5 md:gap-10 md:grid-cols-2 items-center" >
+        <img src="/build/IMG/Logein.jpg" alt="">
+        <div class="grid gap-12">
+            <div class="grid gap-2">
+                <h1 class="text-4xl font-bold">Loge In to App</h1>
+                <p class="text-sm">Enter your details below</p>
+            </div>
+            <div class="text-sm grid gap-10">
+                <div class="grid gap-5">
+                    <input class="border-b-2 py-2 px-3 focus:border-0" type="text" id="Email_input" name="username" placeholder="Email or Phone Numver" required>
+                    <input class="border-b-2 py-2 px-3 focus:border-0" type="password" id="password_input" name="password" placeholder="Password" required>
+                </div>
+                <div class="flex items-center justify-between">
+                    <button onclick="login()" class="px-14 py-3 bg-black text-white rounded-md">Log In</button>
+                    <p class="text-red-600">Forget Password?</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="/build/JavaScript/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loge out</title>
+    <link rel="stylesheet" type="text/css" href="/build/CSS/Style.css">
+    <script src="https://kit.fontawesome.com/10698468cb.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- Announcement of discounts -->
+    <div class="bg-black text-white flex justify-center gap-2 text-[7px] md:text-xs lg:text-base p-2">
+        <p>Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!</p>
+        <a href="#">ShopNow</a>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="relative border-b-2">
+        <div class=" flex justify-around items-center text-[12px] md:text-xs lg:text-base">
+            <a href="/index.html">
+                <img src="/build/IMG/Logo.jpg" alt="The Logo" class="w-16">
+            </a>
+            <div class="md:flex gap-2 md:gap-5 hidden">
+                <a href="#">Home</a>
+                <a href="#Contact">Contact</a>
+                <a href="#About">About</a>
+                <a href="build/HTML/register.html">Sign Up</a>
+                <a href="#" class="hidden">Loge out</a>
+            </div>
+            <div class="flex items-center gap-3 md:gap-5 md:w-1/3">
+                <div class="bg-zinc-200 px-4 py-2 flex items-center justify-around w-full rounded-md text-[10px] ">
+                    <input type="search" name="" id="" placeholder="What are you looking for?"
+                        class="bg-inherit w-full">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <div class="flex gap-3 items-center">
+                    <i class="fa-solid fa-heart"></i>
+                    <i class="fa-solid fa-shopping-cart"></i>
+                    <div class="hidden">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="md:hidden">
+                        <div id="open">
+                            <i class="fa-solid fa-bars"></i>
+                        </div>
+                        <div id="close" class="hidden">
+                            <i class="fa-solid fa-xmark"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="list"
+            class="border-b-2 absolute top-full w-full gap-2 justify-center items-center bg-white border-t-2 p-5 text-center hidden font-thin">
+            <div class="hover:border-b-2 border-b-zinc-600 hover:text-zinc-600"><a href="index.html">Home</a></div>
+            <div class="hover:border-b-2 border-b-zinc-600 hover:text-zinc-600"><a href="#Contact">Contact</a></div>
+            <div class="hover:border-b-2 border-b-zinc-600 hover:text-zinc-600"><a href="#About">About</a></div>
+            <div class="hover:border-b-2 border-b-zinc-600 hover:text-zinc-600"><a href="build/HTML/register.html">Sign
+                    Up</a></div>
+            <div class="hover:border-b-2 border-b-zinc-600 hover:text-zinc-600"><a href="#" class="hidden">Loge out</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="grid gap-10 justify-center items-center text-center py-10 pt-32 px-5 md:px-10">
+        <h1 class="text-5xl font-bold">Loge out</h1>
+        <div class="grid gap-5">
+            <p>Are you sure you want to log out?</p>
+            <div class="flex gap-5">
+                <button onclick="logout()"
+                    class="w-full px-5 py-2 rounded-md text-white bg-zinc-600 hover:bg-zinc-500">Yes</button>
+                <button onclick="notlogout()" class="w-full px-5 py-2 rounded-md text-white bg-zinc-600 hover:text-zinc-500">No</button>
+            </div>
+        </div>
+        <p id="yes" class="hidden text-green-500 border-b-2">You have successfully logged out. <br> Please come back soon.</p>
+        <a id="no" class="hidden text-red-500 border-b-2" href="/index.html">Back to the shopping cart</a>
+    </div>
+
+    <script>
+        function logout() {
+            document.getElementById("yes").classList.remove("hidden");
+            // Automatically redirect to the home page after 5 seconds
+            setTimeout(function () {
+                window.location.href = "/index.html";
+            }, 5000);
+            localStorage.clear();
+        }
+        function notlogout() {
+            document.getElementById("no").classList.remove("hidden");
+            setTimeout(function () {
+                window.location.href = "/index.html";
+            }, 5000);
+        }
+    </script>
+    <script src="/build/JavaScript/script.js"></script>
+</body>
+
+</html>

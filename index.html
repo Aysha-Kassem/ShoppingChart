@@ -17,23 +17,47 @@
     </div>
 
     <!-- Navigation Bar -->
-    <nav class=" flex justify-around items-center text-[12px] md:text-xs lg:text-base">
-        <img src="build/IMG/logo.jpg" alt="The Logo" class="w-16">
-        <div class="flex gap-2 md:gap-5">
-            <a href="#">Home</a>
-            <a href="#Contact">Contact</a>
-            <a href="#About">About</a>
-            <a href="#Sign_Up">Sign Up</a>
+    <nav class="relative border-b-2">
+        <div class=" flex justify-around items-center text-[12px] md:text-xs lg:text-base">
+            <a href="/index.html">
+                <img src="/build/IMG/Logo.jpg" alt="The Logo" class="w-16">
+            </a>
+            <div class="md:flex gap-2 md:gap-5 hidden">
+                <a href="#">Home</a>
+                <a href="#Contact">Contact</a>
+                <a href="#About">About</a>
+                <a href="build/HTML/register.html">Sign Up</a>
+                <a href="#" class="hidden">Loge out</a>
+            </div>
+            <div class="flex items-center gap-3 md:gap-5 md:w-1/3">
+                <div class="bg-zinc-200 px-4 py-2 flex items-center justify-around w-full rounded-md text-[10px] ">
+                    <input type="search" name="" id="" placeholder="What are you looking for?"
+                        class="bg-inherit w-full">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <div class="flex gap-3 items-center">
+                    <i class="fa-solid fa-heart"></i>
+                    <i class="fa-solid fa-shopping-cart"></i>
+                    <div class="hidden">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="md:hidden">
+                        <div id="open">
+                            <i class="fa-solid fa-bars"></i>
+                        </div>
+                        <div id="close" class="hidden">
+                            <i class="fa-solid fa-xmark"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="flex items-center gap-3 md:gap-5 md:w-1/3">
-            <div class="bg-zinc-200 px-3 md:flex items-center justify-around w-full hidden">
-                <input type="search" name="" id="" placeholder="What are you looking for?" class="bg-inherit w-full">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </div>
-            <div class="flex gap-3">
-                <i class="fa-solid fa-heart"></i>
-                <i class="fa-solid fa-shopping-cart"></i>
-            </div>
+        <div id="list" class="border-b-2 absolute top-full w-full gap-2 justify-center items-center bg-white border-t-2 p-5 text-center hidden font-thin">
+            <div class="hover:border-b-2 border-b-zinc-600 hover:text-zinc-600"><a href="index.html">Home</a></div>
+            <div class="hover:border-b-2 border-b-zinc-600 hover:text-zinc-600"><a href="#Contact">Contact</a></div>
+            <div class="hover:border-b-2 border-b-zinc-600 hover:text-zinc-600"><a href="#About">About</a></div>
+            <div class="hover:border-b-2 border-b-zinc-600 hover:text-zinc-600"><a href="build/HTML/register.html">Sign Up</a></div>
+            <div class="hover:border-b-2 border-b-zinc-600 hover:text-zinc-600"><a href="#" class="hidden">Loge out</a></div>
         </div>
     </nav>
 
@@ -41,7 +65,8 @@
     <header class="font-thin flex items-center md:justify-evenly gap-5 px-5 md:p-10 py-10 bg-zinc-800 text-white">
         <div class="w-1/2 grid gap-2">
             <div>
-                <h2 class="text-xl md:text-4xl lg:text-5xl">Get up to 30% off <span class="text-yellow-400 ">New Arrivals</span></h2>
+                <h2 class="text-xl md:text-4xl lg:text-5xl">Get up to 30% off <span class="text-yellow-400 ">New
+                        Arrivals</span></h2>
             </div>
             <p class="text-[10px] md:text-sm lg:text-xl">Introducing our latest collaction of products</p>
         </div>
@@ -53,9 +78,9 @@
     <!-- Main -->
     <main>
         <!-- section 1 with Flash Sale-->
-        <section class="px-5 md:p-10 py-10 grid gap-5">
+        <section class="px-5 md:p-10 py-10 grid gap-5 w-screen">
             <div class="flex items-center justify-between">
-                <div>
+                <div class="font-mono">
                     <div class="text-[5px] flex items-center gap-1 text-red-700">
                         <i class="fa-solid fa-shopping-cart"></i>
                         <h6>Chopping</h6>
@@ -65,47 +90,47 @@
                 <div class="flex items-center text-[8px] md:text-sm " id="timer">
                 </div>
             </div>
-            <div class="flex gap-5 flex-wrap justify-center items-center">
-                <div class="grid gap-10 w-40 text-xs p-2 border border-black rounded-sm">
-                    <div class="grid gap-5">    
-                        <img src="build/IMG/header.jpg" alt="">
-                        <div>
-                            <h3>Product 1</h3>
-                            <p class="text-red-500">$100</p>
-                        </div>
-                    </div>
-                    <button href="#" class="px-5 py-2 rounded-md border border-black">Add to card</button>
-                </div>
-                <div class="grid gap-10 w-40 text-xs p-2 border border-black rounded-sm">
-                    <div class="grid gap-5">    
-                        <img src="build/IMG/header.jpg" alt="">
-                        <div>
-                            <h3>Product 1</h3>
-                            <p class="text-red-500">$100</p>
-                        </div>
-                    </div>
-                    <button href="#" class="px-5 py-2 rounded-md border border-black">Add to card</button>
-                </div>
-                <div class="grid gap-10 w-40 text-xs p-2 border border-black rounded-sm">
-                    <div class="grid gap-5">    
-                        <img src="build/IMG/header.jpg" alt="">
-                        <div>
-                            <h3>Product 1</h3>
-                            <p class="text-red-500">$100</p>
-                        </div>
-                    </div>
-                    <button href="#" class="px-5 py-2 rounded-md border border-black">Add to card</button>
-                </div>
+
+            <div class="flex flex-wrap justify-around gap-5" id="random">
             </div>
         </section>
 
+        <hr>
         <!-- section 2 with All Products-->
-        <section class="px-5 md:p-10 py-10">
-            <h2>All Products</h2>
-            <div class="flex gap-5 flex-wrap justify-center items-center" id="Products">
-                
-             
+        <section class="px-5 md:p-10 py-10 grid gap-2">
+            <div class="font-mono">
+                <div class="text-[5px] flex items-center gap-1 text-red-700">
+                    <i class="fa-solid fa-shopping-cart"></i>
+                    <h6>Chopping</h6>
+                </div>
+                <h2>All Products</h2>
             </div>
+
+            <!-- Products  -->
+            <div class=" grid gap-10">
+                <!-- Beauty -->
+                <div class="grid gap-2">
+                    <h4 class="text-sm md:text-xl text-center bg-black text-white p-2">Beauty </h4>
+                    <div class="flex flex-wrap justify-evenly gap-5" id="beauty"></div>
+                </div>
+                <!-- Fragrances -->
+                <div class="grid gap-2">
+                    <h4 class="text-sm md:text-xl text-center bg-black text-white p-2">Fragrances </h4>
+                    <div class="flex flex-wrap justify-evenly gap-5" id="fragrances"></div>
+                </div>
+                <!-- Furniture -->
+                <div class="grid gap-2">
+                    <h4 class="text-sm md:text-xl text-center bg-black text-white p-2">Furniture </h4>
+                    <div class="flex flex-wrap justify-evenly gap-5" id="furniture"></div>
+                </div>
+                <!-- Groceries -->
+                <div class="grid gap-2">
+                    <h4 class="text-sm md:text-xl text-center bg-black text-white p-2">Groceries </h4>
+                    <div class="flex flex-wrap justify-evenly gap-5" id="groceries"></div>
+                </div>
+            </div>
+
+
         </section>
     </main>
 
