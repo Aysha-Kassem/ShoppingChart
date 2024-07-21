@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping Cart</title>
+    <title>Shopping</title>
     <link rel="stylesheet" type="text/css" href="build/CSS/Style.css">
     <script src="https://kit.fontawesome.com/10698468cb.js" crossorigin="anonymous"></script>
 </head>
@@ -26,8 +26,7 @@
                 <a href="#">Home</a>
                 <a href="#Contact">Contact</a>
                 <a href="#About">About</a>
-                <a href="build/HTML/register.html">Sign Up</a>
-                <a href="#" class="hidden">Loge out</a>
+                <a href="build/HTML/register.html" id="SignUp1">Sign Up</a>
             </div>
             <div class="flex items-center gap-3 md:gap-5 md:w-1/3">
                 <div class="bg-zinc-200 px-4 py-2 flex items-center justify-around w-full rounded-md text-[10px] ">
@@ -36,10 +35,41 @@
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </div>
                 <div class="flex gap-3 items-center">
-                    <i class="fa-solid fa-heart"></i>
-                    <i class="fa-solid fa-shopping-cart"></i>
-                    <div class="hidden">
-                        <i class="fa-solid fa-user"></i>
+                    <div id="user_login" class="hidden gap-3 items-cente">
+                        <div class="relative">
+                            <a href="build/HTML/liked.html">
+                                <i class="fa-solid fa-heart"></i>
+                            </a>
+                            <div id="hesrtMumber"
+                                class="w-2 h-2 text-[5px] bg-red-800 text-white rounded-full flex justify-center items-center absolute -top-0.5 -right-0.5">
+                                0</div>
+                        </div>
+                        <div class="relative">
+                            <a href="build/HTML/Cart.html">
+                                <i class="fa-solid fa-shopping-cart"></i>
+                            </a>
+                            <div id="cartMumber"
+                                class="w-2 h-2 text-[5px] bg-red-800 text-white rounded-full flex justify-center items-center absolute -top-0.5 -right-0.5">
+                                0</div>
+                        </div>
+                        <div id="user">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div id="close_user" class="hidden">
+                            <i class="fa-solid fa-xmark"></i>
+                        </div>
+                    </div>
+                    <div id="list_user"
+                        class="absolute top-full bg-white left-0 right-0 border-y-2 hidden gap-5 justify-center p-5 text-center pt-10">
+                        <h5 class="font-bold text-xl">welcome <br><span class="text-yellow-700" id="user_name"></span>
+                        </h5>
+                        <div class="grid gap-2 justify-center">
+                            <a href="#"><i class="fa-solid fa-user"></i> Edit Profile</a>
+                            <a href="#"><i class="fa-solid fa-heart"></i> Favorate Products</a>
+                            <a href="#"><i class="fa-solid fa-shopping-cart"></i> Shopping Cart</a>
+                        </div>
+                        <a href="build/HTML/logeout.html" id="logout"
+                            class="px-5 py-2 bg-zinc-900 text-white rounded-md">Loge out</a>
                     </div>
                     <div class="md:hidden">
                         <div id="open">
@@ -52,12 +82,13 @@
                 </div>
             </div>
         </div>
-        <div id="list" class="border-b-2 absolute top-full w-full gap-2 justify-center items-center bg-white border-t-2 p-5 text-center hidden font-thin">
+        <div id="list"
+            class="border-b-2 absolute top-full w-full gap-2 justify-center items-center bg-white border-t-2 p-5 text-center hidden font-thin">
             <div class="hover:border-b-2 border-b-zinc-600 hover:text-zinc-600"><a href="index.html">Home</a></div>
             <div class="hover:border-b-2 border-b-zinc-600 hover:text-zinc-600"><a href="#Contact">Contact</a></div>
             <div class="hover:border-b-2 border-b-zinc-600 hover:text-zinc-600"><a href="#About">About</a></div>
-            <div class="hover:border-b-2 border-b-zinc-600 hover:text-zinc-600"><a href="build/HTML/register.html">Sign Up</a></div>
-            <div class="hover:border-b-2 border-b-zinc-600 hover:text-zinc-600"><a href="#" class="hidden">Loge out</a></div>
+            <div class="hover:border-b-2 border-b-zinc-600 hover:text-zinc-600"> <a href="build/HTML/register.html"
+                    id="SignUp2">Sign Up</a></div>
         </div>
     </nav>
 
@@ -76,7 +107,7 @@
     </header>
 
     <!-- Main -->
-    <main>
+    <main class="relative">
         <!-- section 1 with Flash Sale-->
         <section class="px-5 md:p-10 py-10 grid gap-5 w-screen">
             <div class="flex items-center justify-between">
@@ -90,7 +121,6 @@
                 <div class="flex items-center text-[8px] md:text-sm " id="timer">
                 </div>
             </div>
-
             <div class="flex flex-wrap justify-around gap-5" id="random">
             </div>
         </section>
@@ -105,9 +135,8 @@
                 </div>
                 <h2>All Products</h2>
             </div>
-
             <!-- Products  -->
-            <div class=" grid gap-10">
+            <div class=" grid gap-10" id="Products">
                 <!-- Beauty -->
                 <div class="grid gap-2">
                     <h4 class="text-sm md:text-xl text-center bg-black text-white p-2">Beauty </h4>
@@ -129,13 +158,22 @@
                     <div class="flex flex-wrap justify-evenly gap-5" id="groceries"></div>
                 </div>
             </div>
-
-
         </section>
+
     </main>
 
 
     <script src="build/JavaScript/script.js"></script>
+    <script>
+        if (localStorage.getItem("addedItem")) {
+            const addedItem = JSON.parse(localStorage.getItem('addedItem'));
+            document.getElementById("cartMumber").innerText = addedItem.length;
+        }
+        if (localStorage.getItem("loveItem")) {
+            const loveItem = JSON.parse(localStorage.getItem('loveItem'));
+            document.getElementById("hesrtMumber").innerText = loveItem.length;
+        }
+    </script>
 </body>
 
 </html>

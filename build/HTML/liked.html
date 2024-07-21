@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liked product</title>
+    <link rel="stylesheet" type="text/css" href="/build/CSS/Style.css">
+    <script src="https://kit.fontawesome.com/10698468cb.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <div class="grid gap-5 py-10 px-5">
+        <div>
+            <div class="text-2xl font-extrabold font-mono flex items-center justify-around">
+                <h1><i class="fa-solid fa-heart"></i> Liked product</h1>
+                <div onclick="{window.location.href = `/index.html`;}">
+                    <i class="fa-solid fa-xmark"></i>
+                </div>
+            </div>
+            <hr>
+        </div>
+        <div id="cart_empty" class="text-2xl font-bold text-center py-36">
+            you don't have any product in cart
+        </div>
+        <div class="flex flex-wrap gap-3" id="product_liked"> </div>
+    </div>
+
+
+    <script>
+        if (localStorage.getItem("loveItem")) {
+            document.getElementById("cart_empty").classList.add("hidden");
+            const loveItem = JSON.parse(localStorage.getItem('loveItem'));
+            loveItem.forEach(product => {
+                document.getElementById("product_liked").innerHTML +=
+                    `
+      <div class="grid gap-10 w-44 border rounded-md p-5 text-xs">
+        <div class="grid gap-3">
+          <div onclick="productpage(${product.id})"><img src="${product.images}" alt=""></div>
+          <div class="grid justify-center items-center gap-7">
+            <div>
+              <h3 class="font-bold">${product.title}</h3>
+              <p class="text-red-500">$${product.price}</p>
+            </div>
+          </div>
+        </div>
+        <div class="flex items-center gap-5"> 
+            <button onclick="addToCart(${product.id})" href="#" class="px-5 py-2 rounded-md border border-black">Add to card</button>
+            <div onclick="removeFromlove(${product.id})"><i class="fa-solid fa-trash"></i></div>
+        </div>
+      `;
+            })
+        }
+        else {
+            window.location.href = `/index.html`;
+        }
+    </script>
+    <script src="/build/JavaScript/script.js"></script>
+</body>
+
+</html>

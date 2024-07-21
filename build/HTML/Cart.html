@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" type="text/css" href="/build/CSS/Style.css">
+    <script src="https://kit.fontawesome.com/10698468cb.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="grid gap-5 py-10 px-5 relative">
+        <div>
+            <div class="text-2xl font-extrabold font-mono flex items-center justify-around">
+                <h1><i class="fa-solid fa-cart-shopping"></i> Shopping Cart</h1>
+                <div onclick="{window.location.href = `/index.html`;}">
+                    <i class="fa-solid fa-xmark"></i>
+                </div>
+            </div>
+            <hr>
+        </div>
+        <div id="cart_empty" class="text-2xl font-bold text-center py-36">
+            you don't have any product in cart
+        </div>
+        <div class="grid gap-3" id="product_cart"> </div>
+        <div class="flex gap-5 items-center justify-between fixed bottom-0 left-0 right-0 p-5 bg-zinc-400">
+            <div class="flex gap-5 items-center justify-center">
+                <h2 class="text-lg font-bold">Total Price</h2>
+                <p id="total_price">$0</p>
+            </div>
+            <button class="py-2 px-5 text-white bg-zinc-800 hover:bg-blue-700 rounded-md shadow-sm font-mono">
+                Checkout
+            </button>
+        </div>
+    </div>
+
+
+    <script>
+        let Total = 0;
+        if (localStorage.getItem("addedItem")) {
+            document.getElementById("cart_empty").classList.add("hidden");
+            const addedItem = JSON.parse(localStorage.getItem('addedItem'));
+            addedItem.forEach(productcart => {
+                Total += productcart.price * productcart.number;
+                document.getElementById("product_cart").innerHTML += `
+            <div class="flex items-center gap-5 border rounded-md mx-10">
+                <img src="${productcart.images}"
+                    alt="" width="30%">
+                <div class="grid gap-4 w-full px-5 py-2 text-xs md:text-base">
+                    <div>
+                        <h4 class="font-bold">${productcart.title}</h4>
+                        <p class="text-red-500">${productcart.price}</p>
+                    </div>
+                    <div class="flex gap-2 items-center justify-between">
+                        <div class="inline-flex rounded-md shadow-sm font-mono" role="group">
+                            <button onclick="minus(${productcart.id})" type="button"
+                                class="px-4 py-1 text-sm  text-black bg-white border border-black rounded-s-lg hover:bg-gray-100 hover:text-zinc-700">
+                                <i class="fa-solid fa-minus"></i>
+                            </button>
+                            <button type="button"
+                                class="px-5 py-1 text-sm  text-black bg-white border-t border-b border-black hover:bg-gray-100 hover:text-zinc-700">
+                                ${productcart.number}
+                            </button>
+                            <button onclick="add(${productcart.id})" type="button"
+                                class="px-4 py-1 text-sm  text-white bg-zinc-600 border border-black rounded-e-lg hover:bg-gray-100 hover:text-zinc-700">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                        <div onclick="removeFromCart(${productcart.id})"><i class="fa-solid fa-trash"></i></div>
+                    </div>
+
+                </div>
+            </div>
+         `;
+            })
+        }
+        else {
+            window.location.href = `/index.html`;
+        }
+        document.getElementById("total_price").innerHTML = `$${Number(Total.toFixed(3))}`;
+
+        function add(id) {
+            increaseQuantity(id);
+            window.location.href = '/build/HTML/Cart.html'
+        }
+        function minus(id) {
+            decreaseQuantity(id);
+            window.location.href = '/build/HTML/Cart.html'
+        }
+    </script>
+    <script src="/build/JavaScript/script.js"></script>
+</body>
+
+</html>

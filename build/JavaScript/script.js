@@ -4,6 +4,9 @@ document.getElementById("open").onclick = () => {
   document.getElementById("list").classList.add("grid");
   document.getElementById("open").style.display = "none";
   document.getElementById("close").style.display = "block";
+  document.getElementById("list_user").classList.add("hidden");
+  document.getElementById("close_user").classList.add("hidden");
+  document.getElementById("user").classList.remove("hidden");
 };
 // close list of smaller nav
 document.getElementById("close").onclick = () => {
@@ -11,6 +14,22 @@ document.getElementById("close").onclick = () => {
   document.getElementById("list").classList.add("hidden");
   document.getElementById("open").style.display = "block";
   document.getElementById("close").style.display = "none";
+};
+// see user profile
+document.getElementById("user").onclick = () => {
+  document.getElementById("list_user").classList.remove("hidden");
+  document.getElementById("list_user").classList.add("grid");
+  document.getElementById("close_user").classList.remove("hidden");
+  document.getElementById("user").classList.add("hidden");
+  document.getElementById("list").classList.add("hidden");
+  document.getElementById("open").style.display = "block";
+  document.getElementById("close").style.display = "none";
+};
+document.getElementById("close_user").onclick = () => {
+  document.getElementById("list_user").classList.remove("grid");
+  document.getElementById("list_user").classList.add("hidden");
+  document.getElementById("user").classList.remove("hidden");
+  document.getElementById("close_user").classList.add("hidden");
 };
 
 // For Timer in Section 1 of Flash Sales
@@ -45,231 +64,278 @@ fetch("https://dummyjson.com/products")
   .then((data) => data.products)
   .then((products) => {
     products.forEach((product) => {
-      if (product.category === "beauty") {
-        document.getElementById("beauty").innerHTML += `
-        <div onclick="productpage(${product})" class="grid gap-5 w-44 border rounded-md p-5 text-xs">
-          <div><img src="${product.images}" alt=""></div>
-          <div class="grid justify-center items-center gap-7">
-            <div>
-              <h3 class="font-bold">${product.title}</h3>
-              <p class="text-red-500">$${product.price}</p>
-            </div>
-            <button href="#" class="px-5 py-2 rounded-md border border-black">Add to card</button>
-          </div>
-        </div>
-        `;
-      } else if (product.category === "fragrances") {
-        document.getElementById("fragrances").innerHTML += `
-        <div class="grid gap-5 w-44 border rounded-md p-5 text-xs">
-          <div><img src="${product.images}" alt=""></div>
-          <div class="grid justify-center items-center gap-7">
-            <div>
-              <h3 class="font-bold">${product.title}</h3>
-              <p class="text-red-500">$${product.price}</p>
-            </div>
-            <button href="#" class="px-5 py-2 rounded-md border border-black">Add to card</button>
-          </div>
-        </div>
-        `;
-      } else if (product.category === "furniture") {
-        document.getElementById("furniture").innerHTML += `
-        <div class="grid gap-5 w-44 border rounded-md p-5 text-xs">
-          <div><img src="${product.images}" alt=""></div>
-          <div class="grid justify-center items-center gap-7">
-            <div>
-              <h3 class="font-bold">${product.title}</h3>
-              <p class="text-red-500">$${product.price}</p>
-            </div>
-            <button href="#" class="px-5 py-2 rounded-md border border-black">Add to card</button>
-          </div>
-        </div>
-        `;
-      } else if (product.category === "groceries") {
-        document.getElementById("groceries").innerHTML += `
-        <div class="grid gap-5 w-44 border rounded-md p-5 text-xs">
-          <div><img src="${product.images}" alt=""></div>
-          <div class="grid justify-center items-center gap-7">
-            <div>
-              <h3 class="font-bold">${product.title}</h3>
-              <p class="text-red-500">$${product.price}</p>
-            </div>
-            <button href="#" class="px-5 py-2 rounded-md border border-black">Add to card</button>
-          </div>
-        </div>
-        `;
-      }
-      if (product.price >= 50 && product.price <= 500) {
-        document.getElementById("random").innerHTML += `
-          <div class="grid gap-5 w-44 border rounded-md p-5 text-xs">
-            <div><img src="${product.images}" alt=""></div>
-            <div class="grid justify-center items-center gap-7">
-              <div>
-                <h3 class="font-bold">${product.title}</h3>
-                <p class="text-red-500 line-through">$${product.price}</p>
-                <p class="text-red-700 text-[10px]">$${Number(
-                  (product.price * 0.8).toFixed(5)
-                )}</p>
-              </div>
-              <button href="#" class="px-5 py-2 rounded-md border border-black">Add to card</button>
-            </div>
-          </div>
-          `;
-      }
+      AllProduct(product);
+      localStorage.setItem("products", JSON.stringify(products));
     });
   });
 
-// function productpage(product) {
-//   console.log(product);
-//   document.getElementById("productPage").innerHTML = `
-//        <!-- Announcement of discounts -->
-//      <div class=" bg-black text-white flex justify-center gap-2 text-[7px] md:text-xs lg:text-base p-2">
-//         <p>Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!</p>
-//         <a href="#">ShopNow</a>
-//     </div>
+// after logein
+let user = document.getElementById("user_login");
+let SignUp1 = document.getElementById("SignUp1");
+let SignUp2 = document.getElementById("SignUp2");
+let text1 = document.getElementById("text1");
+let text2 = document.getElementById("text2");
+let random = document.getElementById("random");
+let Products = document.getElementById("Products");
 
-//     <!-- Navigation Bar -->
-//     <nav class="relative border-b-2">
-//         <div class=" flex justify-around items-center text-[12px] md:text-xs lg:text-base">
-//             <a href="/index.html">
-//                 <img src="/build/IMG/Logo.jpg" alt="The Logo" class="w-16">
-//             </a>
-//             <div class="md:flex gap-2 md:gap-5 hidden">
-//                 <a href="#">Home</a>
-//                 <a href="#Contact">Contact</a>
-//                 <a href="#About">About</a>
-//                 <a href="build/HTML/login.html">Loge in</a>
-//                 <a href="#" class="hidden">Loge out</a>
-//             </div>
-//             <div class="flex items-center gap-3 md:gap-5 md:w-1/3">
-//                 <div class="bg-zinc-200 px-4 py-2 flex items-center justify-around w-full rounded-md text-[10px] ">
-//                     <input type="search" name="" id="" placeholder="What are you looking for?"
-//                         class="bg-inherit w-full">
-//                     <i class="fa-solid fa-magnifying-glass"></i>
-//                 </div>
-//                 <div class="flex gap-3 items-center">
-//                     <i class="fa-solid fa-heart"></i>
-//                     <i class="fa-solid fa-shopping-cart"></i>
-//                     <div class="hidden">
-//                         <i class="fa-solid fa-user"></i>
-//                     </div>
-//                     <div class="md:hidden">
-//                         <div id="open">
-//                             <i class="fa-solid fa-bars"></i>
-//                         </div>
-//                         <div id="close" class="hidden">
-//                             <i class="fa-solid fa-xmark"></i>
-//                         </div>
-//                     </div>
-//                 </div>
-//             </div>
-//         </div>
-//         <div id="list" class="border-b-2 absolute top-full w-full gap-2 justify-center items-center bg-white border-t-2 p-5 text-center hidden font-thin">
-//             <div class="hover:border-b-2 border-b-zinc-600 hover:text-zinc-600"><a href="#">Home</a></div>
-//             <div class="hover:border-b-2 border-b-zinc-600 hover:text-zinc-600"><a href="#Contact">Contact</a></div>
-//             <div class="hover:border-b-2 border-b-zinc-600 hover:text-zinc-600"><a href="#About">About</a></div>
-//             <div class="hover:border-b-2 border-b-zinc-600 hover:text-zinc-600"><a href="build/HTML/login.html">Loge in</a></div>
-//             <div class="hover:border-b-2 border-b-zinc-600 hover:text-zinc-600"><a href="#" class="hidden">Loge out</a></div>
-//         </div>
-//     </nav>
+if (localStorage.getItem("Email")) {
+  SignUp1.classList.add("hidden");
+  SignUp2.classList.add("hidden");
+  // see user profile
+  user.classList.remove("hidden");
+  user.classList.add("flex");
+  document.getElementById("user_name").innerText = localStorage.getItem("Name");
+}
 
-//     <!-- product page -->
-//     <div  class="py-10 px-5 grid md:grid-cols-2 gap-5 items-center justify-center">
-//         <div class="w-1/2"><img src="${product.images}" alt="he img"> </div>
-//         <div class=" grid gap-5">
-//          <div class="grid gap-5 font-serif">
-//              <div class="text-2xl grid gap-2">
-//                  <h1 class="font-bold">${product.title}</h1>
-//                  <p class="text-red-500">$${product.price}</p>
-//              </div>
-//              <p class="text-sm">${product.description}</p>
-//          </div>
-//          <hr>
-//          <div class="flex justify-around items-center">
-//              <div class="inline-flex rounded-md shadow-sm font-mono" role="group">
-//                  <button type="button" class="px-4 py-2 text-sm  text-black bg-white border border-black rounded-s-lg hover:bg-gray-100 hover:text-zinc-700">
-//                      <i class="fa-solid fa-minus"></i>
-//                  </button>
-//                  <button id="cont" type="button" class="px-10 py-2 text-sm  text-black bg-white border-t border-b border-black hover:bg-gray-100 hover:text-zinc-700">
-//                    0
-//                  </button>
-//                  <button type="button" class="px-4 py-2 text-sm  text-white bg-zinc-600 border border-black rounded-e-lg hover:bg-gray-100 hover:text-zinc-700">
-//                      <i class="fa-solid fa-plus"></i>
-//                  </button>
-//              </div>
-//              <div class="bg-zinc-600 text-white px-10 py-2 rounded-md">Buy Now</div>
-//              <div class="p-2 text-xs border border-black rounded-md"><i class="fa-solid fa-heart"></i></div>
-//          </div>
-//      </div>
-//     </div>
-//      `;
-//   Window.open(`build/HTML/product.html`);
-// }
+// Add all products to home page
+function AllProduct(product) {
+  if (product.category === "beauty") {
+    document.getElementById("beauty").innerHTML += `
+      <div class="grid gap-10 w-44 border rounded-md p-5 text-xs">
+        <div class="grid gap-3">
+          <div onclick="productpage(${product.id})"><img src="${product.images}" alt=""></div>
+          <div class="grid justify-center items-center gap-7">
+            <div>
+              <h3 class="font-bold">${product.title}</h3>
+              <p class="text-red-500">$${product.price}</p>
+            </div>
+          </div>
+        </div>
+        <div class="flex gap-2 items-center">
+        <button onclick="addToCart(${product.id})" href="#" class="px-5 py-2 rounded-md border border-black">Add to card</button>
+         <div onclick="addTolove(${product.id})" class="text-lg hover:text-red-900"><i class="fa-solid fa-heart"></i></div>
+        </div>
+      </div>
+      `;
+  } else if (product.category === "fragrances") {
+    document.getElementById("fragrances").innerHTML += `
+      <div class="grid gap-10 w-44 border rounded-md p-5 text-xs">
+        <div class="grid gap-3">
+          <div onclick="productpage(${product.id})"><img src="${product.images}" alt=""></div>
+          <div class="grid justify-center items-center gap-7">
+            <div>
+              <h3 class="font-bold">${product.title}</h3>
+              <p class="text-red-500">$${product.price}</p>
+            </div>
+          </div>
+        </div>
+          <div class="flex gap-2 items-center">
+        <button onclick="addToCart(${product.id})" href="#" class="px-5 py-2 rounded-md border border-black">Add to card</button>
+         <div onclick="addTolove(${product.id})" class="text-lg hover:text-red-900"><i class="fa-solid fa-heart"></i></div>
+        </div>
+      </div>
+      `;
+  } else if (product.category === "furniture") {
+    document.getElementById("furniture").innerHTML += `
+      <div class="grid gap-10 w-44 border rounded-md p-5 text-xs">
+        <div class="grid gap-3">
+          <div onclick="productpage(${product.id})"><img src="${product.images}" alt=""></div>
+          <div class="grid justify-center items-center gap-7">
+            <div>
+              <h3 class="font-bold">${product.title}</h3>
+              <p class="text-red-500">$${product.price}</p>
+            </div>
+          </div>
+        </div>
+         <div class="flex gap-2 items-center">
+        <button onclick="addToCart(${product.id})" href="#" class="px-5 py-2 rounded-md border border-black">Add to card</button>
+         <div onclick="addTolove(${product.id})" class="text-lg hover:text-red-900"><i class="fa-solid fa-heart"></i></div>
+        </div>
+      </div>
+      `;
+  } else if (product.category === "groceries") {
+    document.getElementById("groceries").innerHTML += `
+      <div class="grid gap-10 w-44 border rounded-md p-5 text-xs">
+        <div onclick="productpage(${product.id})" class="grid gap-3">
+          <div><img src="${product.images}" alt=""></div>
+          <div class="grid justify-center items-center gap-7">
+            <div>
+              <h3 class="font-bold">${product.title}</h3>
+              <p class="text-red-500">$${product.price}</p>
+            </div>
+          </div>
+        </div>
+          <div class="flex gap-2 items-center">
+        <button onclick="addToCart(${product.id})" href="#" class="px-5 py-2 rounded-md border border-black">Add to card</button>
+         <div onclick="addTolove(${product.id})" class="text-lg hover:text-red-900"><i class="fa-solid fa-heart"></i></div>
+        </div>
+      </div>
+      `;
+  }
+  if (product.price >= 50 && product.price <= 500) {
+    document.getElementById("random").innerHTML += `
+      <div class="grid gap-10 w-44 border rounded-md p-5 text-xs">
+        <div class="grid gap-3">
+          <div onclick="productpage(${product.id})" ><img src="${
+      product.images
+    }" alt=""></div>
+          <div class="grid justify-center items-center gap-7">
+            <div>
+              <h3 class="font-bold">${product.title}</h3>
+              <p class="text-red-500 line-through">$${product.price}</p>
+              <p class="text-red-700 text-[10px]">$${Number(
+                (product.price * 0.8).toFixed(5)
+              )}</p>
+            </div>
+          </div>
+        </div>
+          <div class="flex gap-2 items-center">
+        <button onclick="addToCart(${
+          product.id
+        })" href="#" class="px-5 py-2 rounded-md border border-black">Add to card</button>
+         <div onclick="addTolove(${
+           product.id
+         })" class="text-lg hover:text-red-900"><i class="fa-solid fa-heart"></i></div>
+        </div>
+      </div>
+        `;
+  }
+}
 
+let addedItem = [];
+let loveItem = [];
+// Add to card
+function addToCart(id) {
+  if (localStorage.getItem("Email")) {
+    const productcart = JSON.parse(localStorage.getItem("products")).find(
+      (p) => p.id === id
+    );
+    if (!productcart) {
+      alert("Product not found in cart");
+      return;
+    }
+    let productimfo = {
+      ...productcart,
+      number: 1,
+    };
+    if (localStorage.getItem("addedItem")) {
+      const addedItem = JSON.parse(localStorage.getItem("addedItem")) || [];
+      const product = addedItem.find((p) => p.id === id);
+      if (product) {
+        product.number++;
+        localStorage.setItem("addedItem", JSON.stringify(addedItem));
+      } else {
+        addedItem.push(productimfo);
+        localStorage.setItem("addedItem", JSON.stringify(addedItem));
+      }
+      alert("Product added to cart successfully");
+    } else {
+      addedItem = [...addedItem, productimfo];
+      localStorage.setItem("addedItem", JSON.stringify(addedItem));
+      alert("Product added to cart successfully");
+    }
+    document.getElementById("cartMumber").innerText = addedItem.length;
+  } else {
+    window.location.href = "/build/HTML/register.html";
+  }
+}
 
-let x = 1;
-// Loge In
-localStorage.setItem("Email", "Ayshakassem59@gmail.com");
-localStorage.setItem("password", "Aysha");
-// console.log(localStorage.getItem("Email"))
-// localStorage.clear();
-const login = async () => {
-  const Email = Email_input.value
-  const password = password_input.value
-  console.log(Email);
-  console.log(password);
+// Remove from cart
+function removeFromCart(id) {
+  if (localStorage.getItem("addedItem")) {
+    console.log("Removing")
+    const addedItem = JSON.parse(localStorage.getItem("addedItem")) || [];
+    const product = addedItem.find((p) => p.id === id);
+    if (product) {
+      addedItem.splice(addedItem.indexOf(product), 1);
+      localStorage.setItem("addedItem", JSON.stringify(addedItem));
+      alert("Product removed from cart successfully");
+    } else {
+      alert("Product not found in cart");
+    }
+    window.location.href = "/build/HTML/Cart.html"
+  }
+}
 
+// add number to cart
+function increaseQuantity(id) {
+  if (localStorage.getItem("addedItem")) {
+    const addedItem = JSON.parse(localStorage.getItem("addedItem")) || [];
+    const product = addedItem.find((p) => p.id === id);
+    if (product) {
+      product.number++;
+      localStorage.setItem("addedItem", JSON.stringify(addedItem));
+    } else {
+      alert("Product not found in cart");
+    }
+  }
+}
 
-//   const login_api = 'https://dummyjson.com/auth/login';
-//   // Create a JS object incluing the login data
-//   const login_data = {
-//       Email: Email,
-//       password: password
-//   }
-//   console.log(login_data);
+// decrease number from cart
+function decreaseQuantity(id) {
+  if (localStorage.getItem("addedItem")) {
+    const addedItem = JSON.parse(localStorage.getItem("addedItem")) || [];
+    const product = addedItem.find((p) => p.id === id);
+    if (product) {
+      if (product.number > 1) {
+        product.number--;
+        localStorage.setItem("addedItem", JSON.stringify(addedItem));
+      } else {
+        removeFromCart(id);
+      }
+    } else {
+      alert("Product not found in cart");
+    }
+  }
+}
 
-//   // Convert the JS Object to JSON string
-//   const json_login_data = JSON.stringify(login_data);
-//   console.log(json_login_data);
+// Add to love
+function addTolove(id) {
+  if (localStorage.getItem("Email")) {
+    const productliked = JSON.parse(localStorage.getItem("products")).find(
+      (p) => p.id === id
+    );
+    if (!productliked) {
+      alert("Product not found in Liked");
+      return;
+    }
+    if (localStorage.getItem("loveItem")) {
+      const loveItem = JSON.parse(localStorage.getItem("loveItem")) || [];
+      const product = loveItem.find((p) => p.id === id);
+      console.log(product);
+      if (product) {
+        alert("Product already added to Liked");
+      } else {
+        loveItem.push(productliked);
+        localStorage.setItem("loveItem", JSON.stringify(loveItem));
+        alert("Product added to Liked successfully");
+      }
+    } else {
+      loveItem = [...loveItem, productliked];
+      localStorage.setItem("loveItem", JSON.stringify(loveItem));
+      alert("Product added to Liked successfully");
+    }
+    document.getElementById("hesrtMumber").innerText = loveItem.length;
+  } else {
+    window.location.href = "/build/HTML/register.html";
+  }
+}
 
-//   // Create the init object to send to the API
-//   const init_obj = {
-//       method: 'POST',
-//       headers: { 'Content-Type': 'application/json' },
-//       body: json_login_data
-//   };
+// remove from love
+function removeFromlove(id) {
+  if (localStorage.getItem("loveItem")) {
+    const loveItem = JSON.parse(localStorage.getItem("loveItem")) || [];
+    const product = loveItem.find((p) => p.id === id);
+    if (product) {
+      loveItem.splice(loveItem.indexOf(product), 1);
+      localStorage.setItem("loveItem", JSON.stringify(loveItem));
+      alert("Product removed from Liked successfully");
+    } else {
+      alert("Product not found in Liked");
+    }
+    window.location.href = "/build/HTML/liked.html"
+  }
+}
 
-
-//   // Send login information to API, and get the response
-//   const res = await fetch(login_api, init_obj)
-//   console.log(res);
-
-//   // // Get the JS data from the response
-//   // const data = await res.json();
-//   // console.log(data);
-
-
-//   // // Check if the login information is not correct
-//   // if (res.status == 400) {
-//   //     error.innerText = data.message;
-
-//   //     return
-//   // }
-
-//   // // If the login info is correct
-//   // if (res.status == 200) {
-
-//   //     // convert user data to JSON
-//   //     const json_data = JSON.stringify(data);
-//   //     console.log(json_data)
-      
-//   //     // Save the user data to the browser storage
-//   //     sessionStorage.user_data = json_data;
-
-      
-//   //     // Navigate to home page
-//   //     location.href = '/';
-//   // }
-
-
-
+// open product page
+function productpage(id) {
+  if (localStorage.getItem("Email")) {
+    const products = JSON.parse(localStorage.getItem("products")).find(
+      (p) => p.id === id
+    );
+    localStorage.setItem("product", JSON.stringify(products));
+    window.location.href = "/build/HTML/product.html";
+  } else {
+    window.location.href = "/build/HTML/register.html";
+  }
 }
