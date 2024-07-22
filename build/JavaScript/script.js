@@ -226,7 +226,7 @@ function addToCart(id) {
     }
     document.getElementById("cartMumber").innerText = addedItem.length;
   } else {
-    window.location.href = "/build/HTML/register.html";
+    window.location.href = "/register.html";
   }
 }
 
@@ -243,7 +243,7 @@ function removeFromCart(id) {
     } else {
       alert("Product not found in cart");
     }
-    window.location.href = "/build/HTML/Cart.html"
+    window.location.href = "/Cart.html"
   }
 }
 
@@ -307,7 +307,7 @@ function addTolove(id) {
     }
     document.getElementById("hesrtMumber").innerText = loveItem.length;
   } else {
-    window.location.href = "/build/HTML/register.html";
+    window.location.href = "/register.html";
   }
 }
 
@@ -323,7 +323,7 @@ function removeFromlove(id) {
     } else {
       alert("Product not found in Liked");
     }
-    window.location.href = "/build/HTML/liked.html"
+    window.location.href = "/liked.html"
   }
 }
 
@@ -334,8 +334,8 @@ function productpage(id) {
       (p) => p.id === id
     );
     localStorage.setItem("product", JSON.stringify(products));
-    window.location.href = "/build/HTML/product.html";
+    window.location.href = "/product.html";
   } else {
-    window.location.href = "/build/HTML/register.html";
+    window.location.href = "/register.html";
   }
 }

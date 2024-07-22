@@ -22,7 +22,7 @@ function SignUp(e){
     localStorage.setItem("Email", Email.value)
     localStorage.setItem("Password", Password.value)
     setTimeout(function () {
-        window.location.href = "/build/HTML/login.html";
+        window.location.href = "/login.html";
     }, 1000);
 }
 
