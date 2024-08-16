@@ -42,13 +42,13 @@ function UpdateTimer() {
   const minutes = Math.floor((seconds % (60 * 60)) / 60);
   const secondsRemaining = Math.floor(seconds % 60);
   document.getElementById("timer").innerHTML = `
-                    <div class="w-9 md:w-20 flex flex-col items-center rounded-md p-1">Day <span class="text-sm md:text-xl">${days}</span></div>
+                    <div class="w-9 md:w-20 grid justify-center items-center rounded-md p-1">Day <span class="text-sm md:text-xl">${days}</span></div>
                     <p class="text-sm">:</p>
-                    <div class="w-9 md:w-20 flex flex-col items-center rounded-md p-1">Hour <span class="text-sm md:text-xl">${hours}</span></div>
+                    <div class="w-9 md:w-20 grid justify-center items-center rounded-md p-1">Hour <span class="text-sm md:text-xl">${hours}</span></div>
                     <p class="text-sm">:</p>
-                    <div class="w-9 md:w-20 flex flex-col items-center rounded-md p-1">minutes <span class="text-sm md:text-xl">${minutes}</span></div>
+                    <div class="w-9 md:w-20 grid justify-center items-center rounded-md p-1">minutes <span class="text-sm md:text-xl">${minutes}</span></div>
                     <p class="text-sm">:</p>
-                    <div class="w-9 md:w-20 flex flex-col items-center rounded-md p-1">seconds <span class="text-sm md:text-xl">${secondsRemaining}</span></div>
+                    <div class="w-9 md:w-20 grid justify-center items-center rounded-md p-1">seconds <span class="text-sm md:text-xl">${secondsRemaining}</span></div>
     `;
 }
 setInterval(UpdateTimer, 1000);
@@ -93,7 +93,7 @@ function AllProduct(product) {
     document.getElementById("beauty").innerHTML += `
       <div class="grid gap-10 w-44 border rounded-md p-5 text-xs">
         <div class="grid gap-3">
-          <div onclick="productpage(${product.id})"><img src="${product.images}" alt=""></div>
+          <div onclick="productpage(${product.id})"><img class="max-h-40" src="${product.images[0]}" alt=""></div>
           <div class="grid justify-center items-center gap-7">
             <div>
               <h3 class="font-bold">${product.title}</h3>
@@ -111,7 +111,7 @@ function AllProduct(product) {
     document.getElementById("fragrances").innerHTML += `
       <div class="grid gap-10 w-44 border rounded-md p-5 text-xs">
         <div class="grid gap-3">
-          <div onclick="productpage(${product.id})"><img src="${product.images}" alt=""></div>
+          <div onclick="productpage(${product.id})"><img class="max-h-40" src="${product.images[0]}" alt=""></div>
           <div class="grid justify-center items-center gap-7">
             <div>
               <h3 class="font-bold">${product.title}</h3>
@@ -129,7 +129,7 @@ function AllProduct(product) {
     document.getElementById("furniture").innerHTML += `
       <div class="grid gap-10 w-44 border rounded-md p-5 text-xs">
         <div class="grid gap-3">
-          <div onclick="productpage(${product.id})"><img src="${product.images}" alt=""></div>
+          <div onclick="productpage(${product.id})"><img class="max-h-40" src="${product.images[0]}" alt=""></div>
           <div class="grid justify-center items-center gap-7">
             <div>
               <h3 class="font-bold">${product.title}</h3>
@@ -147,7 +147,7 @@ function AllProduct(product) {
     document.getElementById("groceries").innerHTML += `
       <div class="grid gap-10 w-44 border rounded-md p-5 text-xs">
         <div onclick="productpage(${product.id})" class="grid gap-3">
-          <div><img src="${product.images}" alt=""></div>
+          <div><img class="max-h-40" src="${product.images[0]}" alt=""></div>
           <div class="grid justify-center items-center gap-7">
             <div>
               <h3 class="font-bold">${product.title}</h3>
@@ -166,8 +166,8 @@ function AllProduct(product) {
     document.getElementById("random").innerHTML += `
       <div class="grid gap-10 w-44 border rounded-md p-5 text-xs">
         <div class="grid gap-3">
-          <div onclick="productpage(${product.id})" ><img src="${
-      product.images
+          <div onclick="productpage(${product.id})" ><img class="max-h-40" src="${
+      product.images[0]
     }" alt=""></div>
           <div class="grid justify-center items-center gap-7">
             <div>

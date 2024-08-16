@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping</title>
-    <link rel="stylesheet" type="text/css" href="build/CSS/Style.css">
+    <link rel="stylesheet" type="text/css" href="src/CSS/Style.css">
     <script src="https://kit.fontawesome.com/10698468cb.js" crossorigin="anonymous"></script>
 </head>
 
@@ -20,7 +20,7 @@
     <nav class="relative border-b-2">
         <div class=" flex justify-around items-center text-[12px] md:text-xs lg:text-base">
             <a href="/index.html">
-                <img src="/build/IMG/Logo.jpg" alt="The Logo" class="w-16">
+                <img src="/src/IMG/Logo.jpg" alt="The Logo" class="w-16">
             </a>
             <div class="md:flex gap-2 md:gap-5 hidden">
                 <a href="#">Home</a>
@@ -102,7 +102,7 @@
             <p class="text-[10px] md:text-sm lg:text-xl">Introducing our latest collaction of products</p>
         </div>
         <div class="w-1/2">
-            <img src="build/IMG/header.jpg" alt="">
+            <img src="src/IMG/header.jpg" alt="">
         </div>
     </header>
 
@@ -118,7 +118,7 @@
                     </div>
                     <h2>Flash Sales</h2>
                 </div>
-                <div class="flex items-center text-[8px] md:text-sm " id="timer">
+                <div class="flex items-center text-[8px] gap-3 md:text-sm " id="timer">
                 </div>
             </div>
             <div class="flex flex-wrap justify-around gap-5" id="random">
@@ -163,7 +163,7 @@
     </main>
 
 
-    <script src="build/JavaScript/script.js"></script>
+    <script src="src/JavaScript/script.js"></script>
     <script>
         if (localStorage.getItem("addedItem")) {
             const addedItem = JSON.parse(localStorage.getItem('addedItem'));
